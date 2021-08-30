@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( -10, -10, -10, 10, 10, 10, 10, 0, 0, 0, 0, -10 )
+
+[node name="square" type="Node2D"]
+
+[node name="corner1" type="StaticBody2D" parent="."]
+position = Vector2( -50, 50 )
+scale = Vector2( 2, 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="corner1"]
+polygon = PoolVector2Array( -10, -10, -10, 10, 10, 10, 10, 0, 0, 0, 0, -10 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="corner1"]
+occluder = SubResource( 1 )
+
+[node name="corner2" type="StaticBody2D" parent="."]
+position = Vector2( 50, 50 )
+scale = Vector2( -2, 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="corner2"]
+polygon = PoolVector2Array( -10, -10, -10, 10, 10, 10, 10, 0, 0, 0, 0, -10 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="corner2"]
+occluder = SubResource( 1 )
+
+[node name="corner3" type="StaticBody2D" parent="."]
+position = Vector2( -50, -50 )
+scale = Vector2( 2, -2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="corner3"]
+polygon = PoolVector2Array( -10, -10, -10, 10, 10, 10, 10, 0, 0, 0, 0, -10 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="corner3"]
+occluder = SubResource( 1 )
+
+[node name="corner4" type="StaticBody2D" parent="."]
+position = Vector2( 50, -50 )
+scale = Vector2( -2, -2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="corner4"]
+polygon = PoolVector2Array( -10, -10, -10, 10, 10, 10, 10, 0, 0, 0, 0, -10 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="corner4"]
+occluder = SubResource( 1 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bengal.ogg-6ff92818a9637325e363fdf775c6fb7f.oggstr"
+
+[deps]
+
+source_file="res://sound/bengal.ogg"
+dest_files=[ "res://.import/bengal.ogg-6ff92818a9637325e363fdf775c6fb7f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

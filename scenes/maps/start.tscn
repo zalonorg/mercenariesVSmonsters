@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://textures/lights/light.png" type="Texture" id=1]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+resource_name = "frameGate"
+polygon = PoolVector2Array( -100, 100, 50, -200, 50, -300, -100, -300 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50, 10 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( -50, 10, -50, -10, 50, -10, 50, 10 )
+
+[node name="start" type="Node2D"]
+position = Vector2( 0, 900 )
+
+[node name="outside" type="Light2D" parent="."]
+position = Vector2( 0, 200 )
+texture = ExtResource( 1 )
+texture_scale = 11.41
+energy = 1.5
+shadow_enabled = true
+
+[node name="frame" type="StaticBody2D" parent="."]
+
+[node name="CollisionL" type="CollisionPolygon2D" parent="frame"]
+position = Vector2( -100, 0 )
+polygon = PoolVector2Array( -100, 100, 50, -200, 50, -300, -100, -300 )
+
+[node name="CollisionR" type="CollisionPolygon2D" parent="frame"]
+position = Vector2( 100, 0 )
+scale = Vector2( -1, 1 )
+polygon = PoolVector2Array( -100, 100, 50, -200, 50, -300, -100, -300 )
+
+[node name="LightOccluderL" type="LightOccluder2D" parent="frame"]
+position = Vector2( -100, 0 )
+occluder = SubResource( 1 )
+
+[node name="LightOccluderR" type="LightOccluder2D" parent="frame"]
+position = Vector2( 100, 0 )
+scale = Vector2( -1, 1 )
+occluder = SubResource( 1 )
+
+[node name="gate" type="StaticBody2D" parent="."]
+position = Vector2( -100, -250 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gate"]
+shape = SubResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="gate"]
+occluder = SubResource( 3 )

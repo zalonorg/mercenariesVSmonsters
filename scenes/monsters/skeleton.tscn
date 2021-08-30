@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/monsters/skeleton.gd" type="Script" id=1]
+[ext_resource path="res://textures/monsters/ironBall.png" type="Texture" id=2]
+[ext_resource path="res://textures/monsters/skeleton.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 6.0
+
+[node name="skeleton" type="RigidBody2D"]
+linear_damp = 1.0
+script = ExtResource( 1 )
+torque = 100
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+rotation = 1.5708
+node_a = NodePath("..")
+node_b = NodePath("../ironBall")
+length = 10.0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( -3, -2, -10, 0 )
+width = 1.0
+default_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+
+[node name="ironBall" type="RigidBody2D" parent="."]
+position = Vector2( -10, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ironBall"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="ironBall"]
+texture = ExtResource( 2 )
+
+[node name="TimerBall" type="Timer" parent="ironBall"]
+wait_time = 3.0
+
+[node name="body" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="body"]
+rotation = 1.5708
+texture = ExtResource( 3 )
+
+[node name="TimerDir" type="Timer" parent="body"]
+autostart = true
+
+[node name="testFront" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 100, 0 )
+
+[connection signal="timeout" from="ironBall/TimerBall" to="." method="_on_TimerBall_timeout"]
+[connection signal="timeout" from="body/TimerDir" to="." method="_on_TimerDir_timeout"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/menu/mainMenu.gd" type="Script" id=1]
+
+[node name="mainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_left = 181.0
+margin_top = 69.0
+margin_right = 223.0
+margin_bottom = 189.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="playBtn" type="Button" parent="Control"]
+margin_right = 43.0
+margin_bottom = 20.0
+mouse_default_cursor_shape = 2
+text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exitBtn2" type="Button" parent="Control"]
+visible = false
+margin_top = 25.0
+margin_right = 43.0
+margin_bottom = 45.0001
+mouse_default_cursor_shape = 2
+text = "mercenaries"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exitBtn3" type="Button" parent="Control"]
+visible = false
+margin_top = 50.0
+margin_right = 43.0
+margin_bottom = 70.0001
+mouse_default_cursor_shape = 2
+text = "options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exitBtn" type="Button" parent="Control"]
+margin_top = 75.0
+margin_right = 43.0
+margin_bottom = 95.0001
+mouse_default_cursor_shape = 2
+text = "EXIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Control/playBtn" to="." method="_on_playBtn_pressed"]
+[connection signal="pressed" from="Control/exitBtn" to="." method="_on_exitBtn_pressed"]
