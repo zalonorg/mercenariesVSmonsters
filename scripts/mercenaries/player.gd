@@ -12,6 +12,13 @@ export var Player_color = Color(1,1,1)
 export var maxAmmo = 50
 var ammo = maxAmmo
 
+export var maxItem1 = 5
+export var maxItem2 = 5
+export var maxItem3 = 5
+
+var item1 = maxItem1
+var item2 = maxItem2
+var item3 = maxItem3
 
 export var upgrades = {amount = 0, rate = 0}
 var gun_in_use
@@ -157,5 +164,8 @@ func updateGun():
 
 func resupply():
 	ammo = maxAmmo
+	item1 = maxItem1
+	item2 = maxItem2
+	item3 = maxItem3
 	pass
 
