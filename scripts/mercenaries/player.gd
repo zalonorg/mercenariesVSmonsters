@@ -154,3 +154,8 @@ func updateGun():
 	$gun0_2.visible = false
 	$gun0_3.visible = false
 	_ready()
+
+func resupply():
+	ammo = maxAmmo
+	pass
+
