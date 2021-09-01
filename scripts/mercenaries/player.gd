@@ -26,6 +26,7 @@ var gun_in_use
 var vel = Vector2()
 var stimOnUse = false
 
+var cursor = Vector2.ZERO
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -45,8 +46,27 @@ func _ready():
 	
 func _input(event):
 	pass
+######################################################
+var joystik_sens= 3000.0
 
+func _physics_process(delta):
+	
+	##################
+	#joystik to mouse#
+	##################
+	
+	var direction: Vector2
+	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	
+	if abs(direction.x) == 1 and abs(direction.y) == 1:
+		direction = direction.normalized()
 
+	var movement = joystik_sens * direction * delta
+	if (movement):  
+		get_viewport().warp_mouse( Vector2(213,120) + movement ) 
+#		get_viewport().warp_mouse( get_local_mouse_position()+movement ) 
+########################################################
 func _process(delta):
 	
 	##########
@@ -90,26 +110,31 @@ func _process(delta):
 	#######
 	
 	if Input.is_action_just_pressed("item1"):
-		if !stimOnUse:
-			stimOnUse = true
-			throw(STIMPACK,20)
-			$stimpackTimer.start()
-			accel /= 2 
-			speed *= 2
+		if item1 > 0:
+			if !stimOnUse:
+				stimOnUse = true
+				throw(STIMPACK,20)
+				$stimpackTimer.start()
+				accel /= 2 
+				speed *= 2
+				
+				item1 -= 1
 		
 	if Input.is_action_just_pressed("item2"): 
-		throw(BENGAL,500)
-	
+		if item2 > 0:
+			throw(BENGAL,500)
+			item2 -= 1
 	if Input.is_action_just_pressed("item3"): 
-		throw(GRENADE,500)
-		
+		if item3 > 0:
+			throw(GRENADE,500)
+			item3 -= 1 
 	
 	
 	########
 	#Camera#
 	########
-	
-	look_at(get_global_mouse_position())
+	cursor = get_global_mouse_position()
+	look_at(cursor)
 	if get_local_mouse_position().x < 162:
 		$Camera.position =  log(camShift) * get_local_mouse_position()
 	#$Camera/interface.set_rotation(-rotation)
