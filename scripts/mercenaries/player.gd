@@ -10,7 +10,7 @@ export var camShift = 1.7
 export var Player_color = Color(1,1,1)
 
 export var maxAmmo = 50
-var ammo = maxAmmo
+var ammo
 
 export var maxItem1 = 5
 export var maxItem2 = 5
@@ -42,7 +42,8 @@ func _ready():
 	get_node(gun_in_use).visible = true
 	get_node(gun_in_use).color = Player_color 
 	$Sprite.modulate = Player_color
-	pass
+	
+	ammo = maxAmmo
 	
 func _input(event):
 	pass

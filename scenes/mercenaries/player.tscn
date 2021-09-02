@@ -45,6 +45,8 @@ cooldown = 0.125
 [node name="gun0_3" parent="." instance=ExtResource( 10 )]
 visible = false
 cooldown = 0.01
+maxAmmo = 200
+magazineSize = 200
 
 [node name="Flashlight" type="Light2D" parent="."]
 rotation = 1.5708
