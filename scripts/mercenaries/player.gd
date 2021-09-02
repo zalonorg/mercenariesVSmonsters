@@ -4,6 +4,13 @@ onready var GRENADE = preload("res://scenes/items/grenade.tscn")
 onready var BENGAL = preload("res://scenes/items/bengal.tscn")
 onready var STIMPACK = preload("res://scenes/items/stimpack.tscn")
 
+onready var GUN0_0 = preload("res://scenes/guns/gun0-0.tscn")
+onready var GUN1_0 = preload("res://scenes/guns/gun1-0.tscn")
+onready var GUN0_1 = preload("res://scenes/guns/gun0-1.tscn")
+onready var GUN1_1 = preload("res://scenes/guns/gun1-1.tscn")
+onready var GUN0_2 = preload("res://scenes/guns/gun0-2.tscn")
+onready var GUN0_3 = preload("res://scenes/guns/gun0-3.tscn")
+
 export var accel = 4
 export var speed = 64
 export var camShift = 1.7
@@ -21,6 +28,7 @@ var item2 = maxItem2
 var item3 = maxItem3
 
 export var upgrades = {amount = 0, rate = 0}
+var gun
 var gun_in_use
 
 var vel = Vector2()
@@ -29,19 +37,28 @@ var stimOnUse = false
 var cursor = Vector2.ZERO
 
 func _ready():
+	
+	gun_in_use = str("GUN", upgrades.amount, "_", upgrades.rate)
+	gun = get(gun_in_use).instance()
+	if has_node("gun"):
+			get_node("gun").queue_free()
+	add_child(gun)
+	
+	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	gun_in_use = str("gun", upgrades.amount, "_", upgrades.rate)
+	
 
 	#put the color in the hands
-	if get_node(gun_in_use).has_node("hand"):
-		get_node(gun_in_use).get_node("hand").modulate = Player_color 
-	else:
-		get_node(gun_in_use).get_node("handR").modulate = Player_color
-		get_node(gun_in_use).get_node("handL").modulate = Player_color
+#	if get_node(gun_in_use).has_node("hand"):
+#		get_node(gun_in_use).get_node("hand").modulate = Player_color 
+#	else:
+#		get_node(gun_in_use).get_node("handR").modulate = Player_color
+#		get_node(gun_in_use).get_node("handL").modulate = Player_color
 
-	get_node(gun_in_use).visible = true
-	get_node(gun_in_use).color = Player_color 
+#	get_node(gun_in_use).visible = true
+#	get_node(gun_in_use).color = Player_color 
 	$Sprite.modulate = Player_color
+	
 	
 	ammo = maxAmmo
 	
@@ -159,7 +176,7 @@ func _process(delta):
 		updateGun()	
 
 func triggerGun():
-	get_node(gun_in_use).trigger()
+	get_node(gun).trigger()
 
 func throw(var item, var force : float):
 	var throwable = item.instance()
@@ -180,12 +197,12 @@ func _on_stimpackTimer_timeout():
 
 func updateGun():
 	pass
-	$gun0_0.visible = false
-	$gun1_0.visible = false
-	$gun0_1.visible = false
-	$gun1_1.visible = false
-	$gun0_2.visible = false
-	$gun0_3.visible = false
+#	$gun0_0.visible = false
+#	$gun1_0.visible = false
+#	$gun0_1.visible = false
+#	$gun1_1.visible = false
+#	$gun0_2.visible = false
+#	$gun0_3.visible = false
 	_ready()
 
 func resupply():
