@@ -67,7 +67,7 @@ _data = [ Vector2( 0, 1.36365 ), 0.0, 0.0, 0, 0, Vector2( 1, -402.651 ), 0.0, 0.
 [sub_resource type="Gradient" id=13]
 colors = PoolColorArray( 0.67, 0.53399, 0.0871, 1, 0, 0, 0, 0 )
 
-[node name="gun" type="Node2D"]
+[node name="gun0_0" type="Node2D"]
 position = Vector2( -1, 0 )
 script = ExtResource( 1 )
 

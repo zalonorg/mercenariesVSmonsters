@@ -138,3 +138,6 @@ texture = ExtResource( 7 )
 expand = true
 stretch_mode = 5
 flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

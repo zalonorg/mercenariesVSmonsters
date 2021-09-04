@@ -37,29 +37,9 @@ var stimOnUse = false
 var cursor = Vector2.ZERO
 
 func _ready():
+	updateGun(false)
 	
-	gun_in_use = str("GUN", upgrades.amount, "_", upgrades.rate)
-	gun = get(gun_in_use).instance()
-	if has_node("gun"):
-			get_node("gun").queue_free()
-	add_child(gun)
-	
-	
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-
-	#put the color in the hands
-#	if get_node(gun_in_use).has_node("hand"):
-#		get_node(gun_in_use).get_node("hand").modulate = Player_color 
-#	else:
-#		get_node(gun_in_use).get_node("handR").modulate = Player_color
-#		get_node(gun_in_use).get_node("handL").modulate = Player_color
-
-#	get_node(gun_in_use).visible = true
-#	get_node(gun_in_use).color = Player_color 
 	$Sprite.modulate = Player_color
-	
-	
 	ammo = maxAmmo
 	
 func _input(event):
@@ -176,7 +156,7 @@ func _process(delta):
 		updateGun()	
 
 func triggerGun():
-	get_node(gun).trigger()
+	gun.trigger()
 
 func throw(var item, var force : float):
 	var throwable = item.instance()
@@ -195,15 +175,28 @@ func _on_stimpackTimer_timeout():
 	speed /= 2
 	stimOnUse = false
 
-func updateGun():
-	pass
-#	$gun0_0.visible = false
-#	$gun1_0.visible = false
-#	$gun0_1.visible = false
-#	$gun1_1.visible = false
-#	$gun0_2.visible = false
-#	$gun0_3.visible = false
-	_ready()
+func updateGun(var delete_old_gun : bool = true):
+	if delete_old_gun:
+		gun.queue_free()
+		
+	gun_in_use = str("GUN", upgrades.amount, "_", upgrades.rate)
+	gun = get(gun_in_use).instance()
+	
+#	for child in $gun.get_children():
+#		print(child.name)
+#		print(gun.name)
+#		$gun.get_node(child.name).queue_free()
+##		gun.queue_free()
+#		pass
+	
+	add_child(gun)
+	
+	#put the color in the hands
+	if  gun.has_node("hand"):
+		gun.get_node("hand").modulate = Player_color 
+	else:
+		gun.get_node("handR").modulate = Player_color
+		gun.get_node("handL").modulate = Player_color	
 
 func resupply():
 	ammo = maxAmmo

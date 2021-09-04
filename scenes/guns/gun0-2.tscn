@@ -70,6 +70,8 @@ colors = PoolColorArray( 0.67, 0.53399, 0.0871, 1, 0, 0, 0, 0 )
 [node name="gun0_2" type="Node2D"]
 position = Vector2( -1, 0 )
 script = ExtResource( 2 )
+cooldown = 0.125
+maxAmmo = 600
 
 [node name="TimerParticles" type="Timer" parent="."]
 wait_time = 0.01

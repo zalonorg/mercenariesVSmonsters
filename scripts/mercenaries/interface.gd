@@ -8,6 +8,8 @@ onready var PELOTA = preload("res://scenes/mercenaries/pelota.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$head.modulate = get_node("/root/world/player").Player_color
+	
 	pass # Replace with function body.
 
 func addLoot(var item):
