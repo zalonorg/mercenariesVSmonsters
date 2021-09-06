@@ -71,6 +71,7 @@ colors = PoolColorArray( 0.67, 0.53399, 0.0871, 1, 0, 0, 0, 0 )
 position = Vector2( -1, 0 )
 script = ExtResource( 1 )
 dispersion = 7
+maxAmmo = 100
 
 [node name="TimerParticles" type="Timer" parent="."]
 wait_time = 0.01

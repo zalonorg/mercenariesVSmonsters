@@ -8,6 +8,8 @@ onready var PELOTA = preload("res://scenes/mercenaries/pelota.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$head.modulate = get_node("/root/world/player").Player_color
+	
 	pass # Replace with function body.
 
 func addLoot(var item):
@@ -17,6 +19,14 @@ func addLoot(var item):
 
 	
 func _process(delta):
-	$icons/ammunition/Label.text = str(get_node("/root/world/player").ammo)
+	playerVar2interface("ammo","ammunition")
+	playerVar2interface("item1","item1")
+	playerVar2interface("item2","item2")
+	playerVar2interface("item3","item3")
 	
+	
+func playerVar2interface(var variable : String , var slot : String): 
+	get_node("icons/"+slot+"/Label").text = str(get_node("/root/world/player").get(variable))
+
+
 #	if 	$ViewportContainer/Viewport/interface3D/glass/Area

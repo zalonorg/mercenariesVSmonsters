@@ -43,33 +43,35 @@ region = Rect2( 0, 48, 16, 16 )
 atlas = ExtResource( 3 )
 region = Rect2( 16, 48, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 3 )
 region = Rect2( 16, 48, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 48, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 13 ), SubResource( 12 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": false,
 "name": "shoot",
 "speed": 60.0
 } ]
 
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=12]
 min_value = -564.08
 max_value = -4.8
 _data = [ Vector2( 0, 1.36365 ), 0.0, 0.0, 0, 0, Vector2( 1, -402.651 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=13]
 colors = PoolColorArray( 0.67, 0.53399, 0.0871, 1, 0, 0, 0, 0 )
 
 [node name="gun0_3" type="Node2D"]
 position = Vector2( -1, 0 )
 script = ExtResource( 2 )
+cooldown = 0.01
+maxAmmo = 2000
 
 [node name="TimerParticles" type="Timer" parent="."]
 wait_time = 0.01
@@ -105,7 +107,7 @@ color = Color( 1, 0.913725, 0.2, 1 )
 [node name="gun" type="AnimatedSprite" parent="."]
 position = Vector2( 9, 2 )
 rotation = 1.5708
-frames = SubResource( 9 )
+frames = SubResource( 11 )
 animation = "shoot"
 
 [node name="ray" type="RayCast2D" parent="."]
@@ -134,9 +136,9 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 35.0
 initial_velocity_random = 0.3
 linear_accel_random = 0.27
-linear_accel_curve = SubResource( 10 )
+linear_accel_curve = SubResource( 12 )
 damping = 50.0
-color_ramp = SubResource( 11 )
+color_ramp = SubResource( 13 )
 
 [node name="shotSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )

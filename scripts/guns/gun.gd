@@ -12,6 +12,12 @@ export var rafaga_size = 3
 var rafaga_state = rafaga_size
 var rafaga_side
 
+export var maxAmmo = 50
+export var magazineSize = 10
+
+func _ready():
+	get_parent().maxAmmo = maxAmmo
+	
 
 func shoot(var side : String = ""):
 	print("ray"+side)
