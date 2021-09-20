@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://models/glass.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://textures/maps/background.png" type="Texture" id=2]
 [ext_resource path="res://textures/maps/wall_texture.png" type="Texture" id=3]
+[ext_resource path="res://scenes/mercenaries/interface3D.gd" type="Script" id=4]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -31,9 +32,11 @@ detail_blend_mode = 0
 detail_uv_layer = 0
 
 [sub_resource type="CylinderShape" id=4]
+radius = 0.85
 height = 3.33255
 
 [node name="interface3D" type="Spatial"]
+script = ExtResource( 4 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -62,7 +65,7 @@ material/0 = SubResource( 3 )
 [node name="Area" type="Area" parent="glass"]
 
 [node name="CollisionShape" type="CollisionShape" parent="glass/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0 )
 shape = SubResource( 4 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -70,3 +73,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.58102, 2.17209 )
 
 [node name="spawnpoint" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
+
+[connection signal="body_entered" from="glass/Area" to="." method="_on_glass_body_entered"]

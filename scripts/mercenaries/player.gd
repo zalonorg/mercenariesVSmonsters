@@ -45,7 +45,7 @@ func _ready():
 func _input(event):
 	pass
 ######################################################
-var joystik_sens= 3000.0
+var joystik_sens= 4000.0
 
 func _physics_process(delta):
 	
@@ -66,7 +66,7 @@ func _physics_process(delta):
 #		get_viewport().warp_mouse( get_local_mouse_position()+movement ) 
 ########################################################
 func _process(delta):
-	
+	_on_hit()
 	##########
 	#controls#
 	##########
@@ -205,3 +205,15 @@ func resupply():
 	item3 = maxItem3
 	pass
 
+var glass
+func _on_hit():
+	glass = get_node("/root/world/interface/ViewportContainer/Viewport/interface3D")
+	print(glass.content)
+	for item in glass.content:
+#		var name = item.name
+#		glass.get(item.name).queue_free()
+#		print(name)
+#		glass.get(name).queue_free()
+#		item.queue_free()
+		pass
+	pass
